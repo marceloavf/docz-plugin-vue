@@ -59,3 +59,11 @@ typings/
 
 # next.js build output
 .next
+
+.npmrc
+.docz
+.rpt2_cache
+dist
+es
+stats.html
+build/Release
