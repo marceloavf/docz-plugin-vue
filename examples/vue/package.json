@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "docz": "^0.2.3",
-    "docz-core": "^0.2.3"
+    "docz-core": "^0.2.3",
+    "docz-plugin-vue": "^0.1.0"
   }
 }
