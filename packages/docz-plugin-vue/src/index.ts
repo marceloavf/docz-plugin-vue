@@ -9,9 +9,9 @@ interface BabelRC {
 
 type ModifyBabelRC = (babelrc: BabelRC) => BabelRC
 
-const doczPluginVue = () =>
+export const doczPluginVue = () =>
   createPlugin({
-    modifyBabelRc: ((babelrc: BabelRC) => {
+    modifyBabelRc: ((babelrc: BabelRC): BabelRC => {
       const options: BabelRC = {
         plugins: ['vuera/babel'],
         babelrc: true,
@@ -19,5 +19,3 @@ const doczPluginVue = () =>
       return options
     }) as ModifyBabelRC,
   })
-
-doczPluginVue()
