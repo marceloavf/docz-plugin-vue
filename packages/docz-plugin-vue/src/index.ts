@@ -8,14 +8,27 @@ interface BabelRC {
 }
 
 type ModifyBabelRC = (babelrc: BabelRC) => BabelRC
+type ModifyBundlerConfig<C = any> = (config: C, dev: boolean) => C
 
 export const doczPluginVue = () =>
   createPlugin({
     modifyBabelRc: ((babelrc: BabelRC): BabelRC => {
-      const options: BabelRC = {
-        plugins: ['vuera/babel'],
-        babelrc: true,
+      if (babelrc.plugins === undefined) {
+        babelrc.plugins = []
       }
-      return options
+      babelrc.plugins.push('vuera/babel')
+      babelrc.babelrc = true
+      return babelrc
     }) as ModifyBabelRC,
+    modifyBundlerConfig: (config => {
+      config.module.push({
+        rules: [
+          {
+            test: /\.vue$/,
+            use: 'vue-loader',
+          },
+        ],
+      })
+      return config
+    }) as ModifyBundlerConfig,
   })
